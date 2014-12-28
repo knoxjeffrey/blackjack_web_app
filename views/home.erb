@@ -1,0 +1,17 @@
+<script>document.getElementById('restart').style.visibility='hidden';</script>
+
+<h1 class="cover-heading">Are You Ready To Win Big?</h1>
+<p class="lead">Type your name below to enter the world of blackjack.  Play your cards right and you could break the house!</p>
+<p class="lead">
+	<form class="form-inline" role="form" action='/' method='post'>
+	  <div class="form-group">
+	    <label class="sr-only" for="nameInput">Name</label>
+	    <input type="text" name="player_name" class="form-control" id="nameInput" placeholder="Name">
+	  </div>
+	  <button type="submit" class="btn btn-success">Lets Play!</button>
+	</form>
+</p>
+
+<%if @error %>
+	<div class="warning-message"><%=@error%></div>
+<% end %>

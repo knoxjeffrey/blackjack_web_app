@@ -1,0 +1,72 @@
+<div id='blackjack'>
+	<% if @is_dealer_playing %>
+		<script>setTimeout(function () {
+			$.ajax({
+				type: 'GET',
+				url: '/blackjack/dealer'
+			}).done(function(msg) {
+				$('#blackjack').replaceWith(msg);
+			});
+			return false;
+			}, 1500);
+			</script>
+	<% end %>
+
+	<div id="bet-status">
+		<p>Player: <%= session[:player_name] %> &nbsp;&nbsp;&nbsp;&nbsp; Bet Placed: £<%= session[:bet_made] %> &nbsp;&nbsp;&nbsp;&nbsp; Available: £<%= session[:account] %></p>
+	</div>
+
+	<h1>Dealer's Cards</h1>
+	<% session[:dealer_hand].each do |card| %>
+		<img class="card-images" src="/images/cards/<%= card[0] %>_of_<%= card[1] %>.png"; />
+	<% end %>
+
+	<br>
+
+	<h1><%= session[:player_name] %>'s Cards</h1>
+	<% session[:player_hand].each do |card| %>
+		<img class="card-images" src="/images/cards/<%= card[0] %>_of_<%= card[1] %>.png"; />
+	<% end %>
+
+	<br>
+	<br>
+
+	<% if @show_hit_stay_buttons %>
+		<form class="form-inline" id="hit_button" role="form" action='/blackjack/player_hit' method='post'>
+			<div class="form-group">
+				<button type="submit" class="btn btn-success">Hit</button>
+			</div>
+		</form>
+		<form class="form-inline" id="stay_button" role="form" action='/blackjack/player_stay' method='post'>
+			<div class="form-group">
+				<button type="submit" class="btn btn-danger">Stay</button>
+			</div>
+		</form>
+	<%end%>
+
+	<% if @show_yes_no_buttons %>
+		Would you like to play again?
+		<form class="form-inline" role="form" action='/blackjack/play_again_yes_action' method='post'>
+			<div class="form-group">
+				<button type="submit" class="btn btn-success">Yes</button>
+			</div>
+		</form>
+		<form class="form-inline" role="form" action='/blackjack/play_again_no_action' method='post'>
+			<div class="form-group">
+				<button type="submit" class="btn btn-danger">No</button>
+			</div>
+		</form>
+	<%end%>
+
+	<%if @lose %>
+		<div class="warning-message"><%=@lose%></div>
+	<% end %>
+
+	<%if @win %>
+		<div class="positive-message"><%=@win%></div>
+	<% end %>
+
+	<%if @tied %>
+		<div class="warning-message"><%=@tied%></div>
+	<% end %>
+</div>	
