@@ -2,7 +2,9 @@ require 'rubygems'
 require 'sinatra'
 require 'pry'
 
-set :sessions, true
+use Rack::Session::Cookie, :key => 'rack.session',
+                           :path => '/',
+                           :secret => 'jeff_knox' 
 
 BLACKJACK = 21
 STICK_MIN = 17
