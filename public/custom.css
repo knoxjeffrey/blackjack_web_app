@@ -101,7 +101,7 @@ body {
 }
 
 .card-images {
-	height: 100px;
+	height: 70px;
 }
 
 .red {
@@ -122,4 +122,15 @@ body {
 	padding-bottom: 10px;
 	border-radius: 10px;
 	margin-bottom: 20px;
+}
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+	.card-images {
+		height: 100px;
+	}
+	
 }

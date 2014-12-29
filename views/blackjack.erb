@@ -12,7 +12,7 @@
 			</script>
 	<% end %>
 	
-	<div class="col-sm-12 red">Player: <%= session[:player_name] %> &nbsp;&nbsp; Bet Placed: £<%= session[:bet_made] %> 	&nbsp;&nbsp; Available: £<%= session[:account] %></div>
+	<div class="col-sm-12 red">Player: <%= session[:player_name] %> &nbsp;&nbsp;&nbsp;&nbsp; Bet Placed: £<%= session[:bet_made] %> 	&nbsp;&nbsp;&nbsp;&nbsp; Available: £<%= session[:account] %></div>
 
 
 	<h2>Dealer's Cards</h2>
@@ -31,6 +31,7 @@
 	<br>
 
 	<% if @show_hit_stay_buttons %>
+	<div class='col-sm-12'>
 		<form class="form-inline" id="hit_button" role="form" action='/blackjack/player_hit' method='post'>
 			<div class="form-group">
 				<button type="submit" class="btn btn-success">Hit</button>
@@ -41,6 +42,7 @@
 				<button type="submit" class="btn btn-danger">Stay</button>
 			</div>
 		</form>
+	</div>
 	<%end%>
 	
 	<%if @lose %>
@@ -58,6 +60,7 @@
 	<% if @show_yes_no_buttons %>
 	<div class="col-sm-12">
 		Would you like to play again?
+		<br>
 		<form class="form-inline" role="form" action='/blackjack/play_again_yes_action' method='post'>
 			<div class="form-group">
 				<button type="submit" class="btn btn-success">Yes</button>
