@@ -11,10 +11,11 @@
 		<link href='/vendor/bootstrap-3.3.1/css/bootstrap.min.css' rel='stylesheet'>
 		
 		<!-- Custom styles for this page -->
-		<link href="/cover.css" rel="stylesheet">
+		<link href="/custom.css" rel="stylesheet">
 		
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-		<script src="/application.js"></script>
+		<script type='text/javascript' src="/vendor/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+		<script type='text/javascript' src="/application.js"></script>
 		
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -24,40 +25,31 @@
   </head>
 	
   <body>
+		<div class="container-fixed">
+	    
+			<div class="navbar navbar-default">
+	      <div class="container">
+	        <div class="navbar-header">
+	          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	          <a class="navbar-brand" href="/"><img alt="Blackjack World" src="/images/logo.png" height="34px"></a>
+	        </div>
+	        <div class="collapse navbar-collapse navbar-right">
+	          <ul class="nav navbar-nav">
+	            <li><a href="/home">Restart Game</a></li>
+							<li><a href="http://knoxjeffrey.github.io" target="_blank">Blog</a></li>
+	          </ul>
+	        </div><!--/.nav-collapse -->
+	      </div>
+	    </div>
 
-		<div class="site-wrapper">
-
-      <div class="site-wrapper-inner">
-
-        <div class="cover-container">
-
-          <div class="masthead clearfix">
-            <div class="inner">
-              <h3 class="masthead-brand">World Of Blackjack</a></h3>
-              <nav>
-                <ul class="nav masthead-nav">
-                  <li class="active" id='restart'><a href="/home">Restart Game</a></li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-
-          <div class="inner cover">
-
-			  		<div>
-			      	<%= yield %>
-			  		</div>
-						
-					</div>
-					
-					<div class="mastfoot">
-						<div class="inner">
-					  	<p>World of Blackjack by <a href="http://knoxjeffrey.github.io/">Jeff Knox</a></p>
-					  </div>
-					</div>
-
-				</div>
-
+      <div class="jumbotron text-center">
+	  		<div>
+	      	<%= yield %>
+	  		</div>
 			</div>
 			
 		</div>

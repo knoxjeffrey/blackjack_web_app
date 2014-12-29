@@ -1,0 +1,125 @@
+body {
+  height: 100%;
+	/* Location of the image */
+	  background-image: url(/images/game_room.jpg);
+  
+	  /* Background image is centered vertically and horizontally at all times */
+	  background-position: center center;
+  
+	  /* Background image doesn't tile */
+	  background-repeat: no-repeat;
+  
+	  /* Background image is fixed in the viewport so that it doesn't move when 
+	     the content's height is greater than the image's height */
+	  background-attachment: fixed;
+  
+	  /* This is what makes the background image rescale based
+	     on the container's size */
+	  background-size: cover;
+  
+	  /* Set a background color that will be displayed
+	     while the background image is loading */
+	  background-color: #333;
+}
+body {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+
+.jumbotron {
+	background-color: rgba(255, 255, 255, 0);
+}
+
+/* Custom container */
+.container-fixed {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+.container-fixed > hr {
+  margin: 30px 0;
+}
+
+/* Custom navbar */
+.navbar-default{
+    background-color: rgba(255, 255, 255, 0);
+		border-color: rgba(255, 255, 255, 0);
+}
+
+/* navbar brand */
+.navbar-default .navbar-brand {
+  display: inline-block;
+}
+.navbar-default .navbar-brand {
+  margin-left: 15px;
+}
+.navbar-default .navbar-brand {
+  padding-right: 0;
+  padding-left: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff; /* IE8 proofing */
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand :focus {
+  background-color: transparent;
+  border-bottom-color: #a9a9a9;
+  border-bottom-color: rgba(255,255,255,.25);
+	color: white;
+}
+.navbar-default .navbar-brand {
+  float: left;
+}
+
+.navbar-default .navbar-nav > li + li {
+  margin-left: 20px;
+}
+.navbar-default .navbar-nav > li > a {
+  padding-right: 0;
+  padding-left: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff; /* IE8 proofing */
+  color: rgba(255,255,255,.75);
+  border-bottom: 2px solid transparent;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  background-color: transparent;
+	color: white;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #fff;
+}
+
+
+
+.form-inline { 
+	display: inline; 
+}
+
+.card-images {
+	height: 100px;
+}
+
+.red {
+	background: rgba(200, 54, 54, 0.7);
+	border-color: rgba(200, 54, 54, 0.7);
+	font-size: 16px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-radius: 10px;
+	margin-bottom: 20px;
+}
+
+.green {
+	background: rgba(50, 205, 50, 0.7);
+	border-color: rgba(50, 205, 50, 0.7);
+	font-size: 16px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-radius: 10px;
+	margin-bottom: 20px;
+}

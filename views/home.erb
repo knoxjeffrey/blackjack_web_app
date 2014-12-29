@@ -1,6 +1,4 @@
-<script>document.getElementById('restart').style.visibility='hidden';</script>
-
-<h1 class="cover-heading">Are You Ready To Win Big?</h1>
+<h2 class="cover-heading">Are You Ready To Win Big?</h2>
 <p class="lead">Type your name below to enter the world of blackjack.  Play your cards right and you could break the house!</p>
 <p class="lead">
 	<form class="form-inline" role="form" action='/' method='post'>
@@ -13,5 +11,5 @@
 </p>
 
 <%if @error %>
-	<div class="warning-message"><%=@error%></div>
+	<div class="col-sm-2"></div><div class="col-sm-8 red"><%=@error%></div><div class="col-sm-2"></div>
 <% end %>

@@ -11,19 +11,18 @@
 			}, 1500);
 			</script>
 	<% end %>
+	
+	<div class="col-sm-12 red">Player: <%= session[:player_name] %> &nbsp;&nbsp; Bet Placed: £<%= session[:bet_made] %> 	&nbsp;&nbsp; Available: £<%= session[:account] %></div>
 
-	<div id="bet-status">
-		<p>Player: <%= session[:player_name] %> &nbsp;&nbsp;&nbsp;&nbsp; Bet Placed: £<%= session[:bet_made] %> &nbsp;&nbsp;&nbsp;&nbsp; Available: £<%= session[:account] %></p>
-	</div>
 
-	<h1>Dealer's Cards</h1>
+	<h2>Dealer's Cards</h2>
 	<% session[:dealer_hand].each do |card| %>
 		<img class="card-images" src="/images/cards/<%= card[0] %>_of_<%= card[1] %>.png"; />
 	<% end %>
 
 	<br>
 
-	<h1><%= session[:player_name] %>'s Cards</h1>
+	<h2><%= session[:player_name] %>'s Cards</h2>
 	<% session[:player_hand].each do |card| %>
 		<img class="card-images" src="/images/cards/<%= card[0] %>_of_<%= card[1] %>.png"; />
 	<% end %>
@@ -43,8 +42,21 @@
 			</div>
 		</form>
 	<%end%>
+	
+	<%if @lose %>
+		<div class="col-sm-2"></div><div class="col-sm-8 red"><%=@lose%></div><div class="col-sm-2"></div>
+	<% end %>
+
+	<%if @win %>
+		<div class="col-sm-2"></div><div class="col-sm-8 green"><%=@win%></div><div class="col-sm-2"></div>
+	<% end %>
+
+	<%if @tied %>
+		<div class="col-sm-2"></div><div class="col-sm-8 green"><%=@tied%></div><div class="col-sm-2"></div>
+	<% end %>
 
 	<% if @show_yes_no_buttons %>
+	<div class="col-sm-12">
 		Would you like to play again?
 		<form class="form-inline" role="form" action='/blackjack/play_again_yes_action' method='post'>
 			<div class="form-group">
@@ -56,17 +68,8 @@
 				<button type="submit" class="btn btn-danger">No</button>
 			</div>
 		</form>
+	</div>
 	<%end%>
 
-	<%if @lose %>
-		<div class="warning-message"><%=@lose%></div>
-	<% end %>
-
-	<%if @win %>
-		<div class="positive-message"><%=@win%></div>
-	<% end %>
-
-	<%if @tied %>
-		<div class="warning-message"><%=@tied%></div>
-	<% end %>
+	
 </div>	

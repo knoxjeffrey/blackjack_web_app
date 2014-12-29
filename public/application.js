@@ -1,5 +1,9 @@
 $(document).ready(function() {
 	
+	if (window.location.pathname == '/') {
+		$('#restart').hide()
+	}
+	
 	$(document).on('click', "#hit_button .form-group button", function() {
 		$.ajax({
 			type: 'POST',
