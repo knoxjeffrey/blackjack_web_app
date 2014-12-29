@@ -70,6 +70,9 @@ body {
 .navbar-default .navbar-brand {
   float: left;
 }
+.navbar-brand > img {
+	height: 25px;
+}
 
 .navbar-default .navbar-nav > li + li {
   margin-left: 20px;
@@ -124,13 +127,13 @@ body {
 	margin-bottom: 20px;
 }
 
-/* Extra small devices (phones, less than 768px) */
-/* No media query since this is the default in Bootstrap */
-
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 	.card-images {
 		height: 100px;
+	}
+	.navbar-brand > img {
+		height: 35px;
 	}
 	
 }
