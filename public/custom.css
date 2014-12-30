@@ -29,6 +29,27 @@ body {
 
 .jumbotron {
 	background-color: rgba(255, 255, 255, 0);
+	padding: 10px 0;
+}
+
+.btn {
+	vertical-align: top;
+}
+
+.input-group-addon, .input-group-btn {
+	width: 0%;
+}
+
+.form-inline { 
+	display: inline; 
+}
+
+.form-group { 
+	display: inline-block; 
+}
+
+.card-images {
+	height: 70px;
 }
 
 /* Custom container */
@@ -74,6 +95,7 @@ body {
 	height: 25px;
 }
 
+/* navbar links */
 .navbar-default .navbar-nav > li + li {
   margin-left: 20px;
 }
@@ -97,16 +119,7 @@ body {
   color: #fff;
 }
 
-
-
-.form-inline { 
-	display: inline; 
-}
-
-.card-images {
-	height: 70px;
-}
-
+/* message background colors */
 .red {
 	background: rgba(200, 54, 54, 0.7);
 	border-color: rgba(200, 54, 54, 0.7);
@@ -135,5 +148,4 @@ body {
 	.navbar-brand > img {
 		height: 35px;
 	}
-	
 }

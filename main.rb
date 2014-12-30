@@ -11,13 +11,15 @@ STICK_MIN = 17
 ACCOUNT_AMOUNT = 500
 
 helpers do  
+  
+  #check if text is entered
   def valid_name_entered?
     return @error = "You must enter a name" if session[:player_name].empty? 
     session[:account] = ACCOUNT_AMOUNT 
     redirect '/make_bet'
-  
   end
   
+  #check if valid integer is entered
   def correct_money_entered?
     if session[:bet_made] =~ /\D/
       @error = "You must enter a valid number"
@@ -32,6 +34,7 @@ helpers do
     end
   end
   
+  #match the deck array with suit and value to the relevant wording for the card images
   def match_card_image_name
     suit_and_value = session[:deck].pop
     
@@ -67,6 +70,9 @@ helpers do
     
   end
   
+  #calculate the values of the cards held
+  #
+  #returns an integer value
   def card_total(cards_held_array)
     value_array = cards_held_array.map { |card_array| card_array[0] }
     card_value_counter = 0
@@ -81,22 +87,25 @@ helpers do
       end
     end
   
-    #decided total based on total number of aces. Will keep adjusting ace value to 1 until the toal is 21 or under
+    decide_ace_value(value_array, card_value_counter)
+  end
+  
+  #decided total based on total number of aces. Will keep adjusting ace value to 1 until the toal is 21 or under
+  def decide_ace_value(value_array, card_value_counter)
     value_array.select { |value| value == 'ace'}.count.times do
       card_value_counter -= 10 if card_value_counter > BLACKJACK
     end
-  
     card_value_counter
   end
   
+  #check if the value of dealers cards are between the stated values and return a boolean
   def is_dealer_sticking?(dealer_total)
     dealer_total.between?(STICK_MIN,BLACKJACK)
   end
   
+  #return true if value of dealers cards are greater than BLACKJACK
   def is_dealer_bust?(dealer_total)
-    if dealer_total > BLACKJACK
-      true
-    end
+    true if dealer_total > BLACKJACK
   end
   
   def winner(msg)
@@ -111,36 +120,54 @@ helpers do
     @tied = msg
   end
   
+  #logic for the play of the dealer
   def dealer_playing
     @show_hit_stay_buttons = false
     dealer_total = card_total(session[:dealer_hand])
     if is_dealer_bust?(dealer_total)
-      session[:account] += session[:bet_made]
-      winner("The dealer is bust. #{session[:player_name]} has won!")
-      @show_yes_no_buttons = true
+      dealer_bust
     elsif is_dealer_sticking?(dealer_total)
       redirect '/blackjack/game_result'
     elsif session[:dealer_card_hidden] == 'hidden'
-      session[:dealer_card_hidden] = 'showing'
-      @is_dealer_playing = true
+      show_dealer_card
     else
-      session[:dealer_hand] << match_card_image_name
-      @is_dealer_playing = true
+      dealer_take_card
     end
   end
   
-  def play_another_game
-    @show_hit_stay_buttons = false
-    @show_yes_no_buttons = true
+  #add money to player account and alter game display
+  def dealer_bust
+    add_money
+    winner("The dealer is bust. #{session[:player_name]} has won!")
+    @show_play_quit_buttons = true
   end
   
+  #display the hidden card of the dealer
+  def show_dealer_card
+    session[:dealer_card_hidden] = 'showing'
+    @is_dealer_playing = true
+  end
+  
+  #change the dealer card array to match the names of the relevant card image
+  def dealer_take_card
+    session[:dealer_hand] << match_card_image_name
+    @is_dealer_playing = true
+  end
+  
+  #change game display buttons
+  def play_another_game
+    @show_hit_stay_buttons = false
+    @show_play_quit_buttons = true
+  end
+  
+  #game result logic
   def declare_result
     if card_total(session[:player_hand]) > card_total(session[:dealer_hand])
-      session[:account] += session[:bet_made]
+      add_money
       play_another_game
       winner("Congratulations #{session[:player_name]}, you have won the game!")
     elsif card_total(session[:player_hand]) < card_total(session[:dealer_hand])
-      session[:account] -= session[:bet_made]
+      remove_money
       play_another_game
       loser("Sorry #{session[:player_name]}, the dealer has won the game.")
     else
@@ -148,11 +175,21 @@ helpers do
       tied("It's a tie! Have a go at beating the dealer again #{session[:player_name]}.")
     end
   end
+  
+  #add bet money to the player's account
+  def add_money
+    session[:account] += session[:bet_made]
+  end
+  
+  #subtract bet money from player's account
+  def remove_money
+    session[:account] -= session[:bet_made]
+  end
 end
 
 before do
   @show_hit_stay_buttons = true
-  @show_yes_no_buttons = false
+  @show_play_quit_buttons = false
   @dealer_card_hidden = true
 end
 
@@ -216,14 +253,14 @@ end
 post '/blackjack/player_hit' do
   session[:player_hand] << match_card_image_name
   if (card_total(session[:player_hand]) > BLACKJACK) && (session[:account] - session[:bet_made] == 0)
-    session[:account] -= session[:bet_made]
+    remove_money
     @show_hit_stay_buttons = false
     loser("Sorry #{session[:player_name]}, you lost and are out of cash. Restart game to have another go.")
     session[:player_name] = nil
   elsif card_total(session[:player_hand]) > BLACKJACK
     play_another_game
     loser("#{session[:player_name]} is bust and has lost the game.")
-    session[:account] -= session[:bet_made]
+    remove_money
   end
   erb :blackjack, layout: false
 end  

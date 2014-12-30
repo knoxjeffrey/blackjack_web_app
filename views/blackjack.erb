@@ -57,22 +57,19 @@
 		<div class="col-sm-2"></div><div class="col-sm-8 green"><%=@tied%></div><div class="col-sm-2"></div>
 	<% end %>
 
-	<% if @show_yes_no_buttons %>
+	<% if @show_play_quit_buttons %>
 	<div class="col-sm-12">
-		Would you like to play again?
-		<br>
 		<form class="form-inline" role="form" action='/blackjack/play_again_yes_action' method='post'>
 			<div class="form-group">
-				<button type="submit" class="btn btn-success">Yes</button>
+				<button type="submit" class="btn btn-success">Play Again</button>
 			</div>
 		</form>
 		<form class="form-inline" role="form" action='/blackjack/play_again_no_action' method='post'>
 			<div class="form-group">
-				<button type="submit" class="btn btn-danger">No</button>
+				<button type="submit" class="btn btn-danger">Quit</button>
 			</div>
 		</form>
 	</div>
 	<%end%>
 
-	
 </div>	

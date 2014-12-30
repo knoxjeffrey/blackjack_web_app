@@ -1,15 +1,48 @@
-<h2 class="cover-heading"><%= session[:player_name] %>, place your bet!</h2>
+<h2 class="cover-heading"><%= session[:player_name] %>, enter your bet or use the quick bet buttons</h2>
 <p class="lead">£<%= session[:account].to_i %> in your account</p>
 <p class="lead">
 	<form class="form-inline" role="form" action='/make_bet' method='post'>
 		<div class="form-group">
 		  <div class="input-group">
 		    <label class="sr-only" for="betInput">Amount</label>
-				<div class="input-group-addon">£</div>
+				<label class="input-group-addon">£</label>
 		    <input type="text" name="bet_made" class="form-control" id="nameInput" placeholder="Amount">
 		  </div>
 		</div>
 	  <button type="submit" class="btn btn-success">Make Bet</button>
+	</form>
+	
+	<br><br>
+	
+	<form class="form-inline money_button" role="form" action='/make_bet' method='post'>
+		<div class="form-group">
+			<input type="text" name="bet_made" class="form-control" id="oneInput" value='1'>
+			<button type="submit" class="btn btn-success">£1</button>
+		</div>
+	</form>
+	<form class="form-inline money_button" role="form" action='/make_bet' method='post'>
+		<div class="form-group">
+			<input type="text" name="bet_made" class="form-control" id="tenInput" value='10'>
+			<button type="submit" class="btn btn-success">£10</button>
+		</div>
+	</form>
+	<form class="form-inline money_button" role="form" action='/make_bet' method='post'>
+		<div class="form-group">
+			<input type="text" name="bet_made" class="form-control" id="twentyInput" value='20'>
+			<button type="submit" class="btn btn-success">£20</button>
+		</div>
+	</form>
+	<form class="form-inline money_button" role="form" action='/make_bet' method='post'>
+		<div class="form-group">
+			<input type="text" name="bet_made" class="form-control" id="fiftyInput" value='50'>
+			<button type="submit" class="btn btn-success">£50</button>
+		</div>
+	</form>
+	<form class="form-inline money_button" role="form" action='/make_bet' method='post'>
+		<div class="form-group">
+			<input type="text" name="bet_made" class="form-control" id="hundredInput" value='100'>
+			<button type="submit" class="btn btn-success">£100</button>
+		</div>
 	</form>
 </p>
 
