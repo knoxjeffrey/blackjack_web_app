@@ -256,7 +256,6 @@ post '/blackjack/player_hit' do
     remove_money
     @show_hit_stay_buttons = false
     loser("Sorry #{session[:player_name]}, you lost and are out of cash. Restart game to have another go.")
-    session[:player_name] = nil
   elsif card_total(session[:player_hand]) > BLACKJACK
     play_another_game
     loser("#{session[:player_name]} is bust and has lost the game.")
