@@ -3,6 +3,9 @@
 3. If you have the 'shotgun' gem installed, you can instead run 'shotgun main.rb'
 4. ctrl+c to stop the server
 
+Working version of this app is at:
+https://knoxjeffrey-blackjack.herokuapp.com
+
 Card images courtesy of:
 https://code.google.com/p/vector-playing-cards/
 
